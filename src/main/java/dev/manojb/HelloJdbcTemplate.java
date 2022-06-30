@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class HelloJdbcTemplate {
@@ -18,6 +19,10 @@ public class HelloJdbcTemplate {
 
     public static void main(String[] args) {
         SpringApplication.run(HelloJdbcTemplate.class, args);
+
+        System.out.println("\nOne Course -------------------------------------\n");
+        Optional<Course> course = dao.get(1);
+        System.out.println(course.get());
 
         System.out.println("\nCreate Course -------------------------------------\n");
         Course springVue = new Course("Spring Boot + Vue","New Course","http://www.danvega.dev/courses");
