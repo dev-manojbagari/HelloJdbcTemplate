@@ -31,6 +31,8 @@ public class HelloJdbcTemplate {
         springVue.setDescription("Learn to build Vue apps that talk to Spring");
         dao.update(springVue,6);
 
+        dao.delete(4);
+
         System.out.println("\n All Courses --------------------------\n");
         List<Course> courses = dao.list();
         courses.forEach(System.out::println);

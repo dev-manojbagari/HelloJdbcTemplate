@@ -67,6 +67,10 @@ public class CourseJdbcDAO implements DAO<Course> {
 
     @Override
     public void delete(int id) {
-
+        String sql = "delete from course where course_id = ?";
+        int delete = jdbcTemplate.update(sql,id);
+        if(delete == 1) {
+            log.info("Course Deleted: " + id);
+        }
     }
 }
