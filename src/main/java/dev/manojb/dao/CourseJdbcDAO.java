@@ -58,7 +58,11 @@ public class CourseJdbcDAO implements DAO<Course> {
 
     @Override
     public void update(Course course, int id) {
-
+        String sql = "update course set title = ?, description = ?, link = ? where course_id = ?";
+        int update = jdbcTemplate.update(sql,course.getTitle(),course.getDescription(),course.getLink(),id);
+        if(update == 1) {
+            log.info("Course Updated: " + course.getTitle());
+        }
     }
 
     @Override

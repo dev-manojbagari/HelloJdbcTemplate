@@ -28,6 +28,8 @@ public class HelloJdbcTemplate {
         Course springVue = new Course("Spring Boot + Vue","New Course","http://www.danvega.dev/courses");
         dao.create(springVue);
 
+        springVue.setDescription("Learn to build Vue apps that talk to Spring");
+        dao.update(springVue,6);
 
         System.out.println("\n All Courses --------------------------\n");
         List<Course> courses = dao.list();
