@@ -1,6 +1,8 @@
 package dev.manojb.dao;
 
 import dev.manojb.model.Course;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -11,7 +13,7 @@ import java.util.Optional;
 
 @Component
 public class CourseJdbcDAO implements DAO<Course> {
-
+    private static final Logger log = LoggerFactory.getLogger(CourseJdbcDAO.class);
     JdbcTemplate jdbcTemplate;
 
    RowMapper<Course> rowMapper = (rs, rowNum) -> {
@@ -34,7 +36,11 @@ public class CourseJdbcDAO implements DAO<Course> {
 
     @Override
     public void create(Course course) {
-
+        String sql = "insert into course(title,description,link) values(?,?,?)";
+        int insert = jdbcTemplate.update(sql,course.getTitle(),course.getDescription(),course.getLink());
+        if(insert == 1) {
+            log.info("New Course Created: " + course.getTitle());
+        }
     }
 
     @Override
